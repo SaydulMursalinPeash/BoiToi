@@ -1,0 +1,707 @@
+
+{% extends 'boitoi/main.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@1&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@600&display=swap');
+      .profile_container{
+            position: relative;
+            height: 100%;
+            width: 1300px;
+            border-radius: 10px;
+            display: flex;
+            padding-top: 10px;
+
+            justify-content: space-around;
+
+        }
+    .profile_details{
+        position:relative;
+        height: fit-content;
+
+        width: 39%;
+        overflow: hidden;
+        border-radius: 10px;
+
+        backdrop-filter: blur(5px);
+    }
+    .order_data{
+        position:relative;
+        height: fit-content;
+        width: 59%;
+        background-color: rgba(86, 252, 103, 0.29);
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    .photo_name{
+        position: relative;
+        height: auto;
+        width:100%;
+     padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(22, 41, 74);
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .photo{
+        height: 150px;
+        width: 150px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #f4fbff;
+
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .photo_div{
+        position: relative;
+        height: 145px;
+        width: 145px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background-color: #0075b5;
+    }
+    .photo_div img{
+        position: relative;
+        width: 145px;
+
+    }
+    .name{
+        position: relative;
+        height: 40px;
+        width: fit-content;
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .name p{
+        font-family: 'Kanit', sans-serif;
+        font-size: 22px;
+        color: rgb(255, 159, 159);
+        letter-spacing: 3px;
+
+    }
+    .other_details{
+        position:relative;
+        width: 100%;
+        
+        
+        box-sizing: border-box;
+        height: fit-content;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(0, 41, 71);
+        overflow: hidden;
+        border: 2px dotted rgba(0, 0, 0, 0.51);
+        
+        
+
+
+    }
+    .detail_box{
+        position:relative;
+        width: 100%;
+        display: flex;
+        padding: 5px;
+
+    }
+    .detail_box p:nth-child(2){
+        position: relative;
+        min-width: 70px;
+        max-width: 250px;
+        height: fit-content;
+        word-wrap: break-word;
+
+    }
+    .edit_profile{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: rgba(239, 45, 106, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .edit_profile i{
+        font-size: 13px;
+        color: #13151c;
+    }
+    .edit_profile:hover{
+        background-color: #f13c3c;
+        cursor:pointer;
+    }
+    .count_cart{
+        position: relative;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    .cart_disp{
+        position:relative;
+        width: 24%;
+        height: 100px;
+        background-color: #f88181;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+
+    }
+    .cart_title{
+        position: relative;
+
+        width: 100%;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.53);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+
+    }
+    .cart_title p{
+        color: rgba(126, 190, 226, 0.53);
+        font-size: 18px;
+       font-family: 'Signika Negative', sans-serif;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #total_order{
+        background-color: #0d4766;
+    }
+    #delevered_order{
+        background-color: #4a81ea;
+    }
+    #pending_order{
+        background-color: #2959f8;
+    }
+    #on_the_way{
+        background-color: #b12a7c;
+    }
+    .cart_body{
+        align-items: center;
+        position:relative;
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .cart_body p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f3f3f3;
+        font-size: 22px;
+        font-family: 'Signika Negative', sans-serif;
+    }
+
+    
+    @media only screen and (max-width: 1300px){
+        .profile_container{
+            width: 100%;
+        }
+
+    }
+     @media only screen and (max-width: 950px){
+         .cart_title p{
+            font-size: 15px;
+        }
+
+     }
+    @media only screen and (max-width: 900px){
+         .cart_title p{
+            font-size: 13px;
+             word-wrap: break-word;
+             word-break: break-word;
+        }
+
+     }
+    @media only screen and (max-width: 550px) {
+        .profile_container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 5px;
+
+        }
+
+        .order_data {
+            width: 100%;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .profile_details {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border: 2px solid rgba(0, 0, 0, 0.27);
+            background: linear-gradient(to bottom, rgba(28, 18, 18, 0.07), transparent);
+            backdrop-filter: blur(5px);
+
+            margin-bottom: 10px;
+
+
+        }
+
+        .cart_title p {
+            font-size: 13px;
+        }
+
+        .count_cart {
+            flex-wrap: wrap;
+            border: 2px solid gray;
+            border-radius: 10px;
+            padding: 3px;
+        }
+        .photo_name {
+            position: relative;
+            height: auto;
+            width: 100%;
+            background-color: transparent;
+
+        }
+
+        .photo {
+            height: 100px;
+            width: 100px;
+            border: 3px solid #0d4766;
+            border-radius: 50%;
+            align-self: flex-end;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo_div{
+            position:relative;
+            height: 99%;
+            width: 99%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .photo_div img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cart_disp {
+            width: 49.5%;
+            margin-bottom: 3px;
+            height: 70px;
+            margin-top: 3px;
+
+
+        }
+
+        .other_details {
+            padding: 0;
+            border: none;
+
+        }
+
+        
+
+        .name {
+            position: relative;
+            height: auto;
+            border-bottom: 1.5px solid rgba(123, 123, 125, 0.58);
+            padding-bottom: 0px;
+            align-self: flex-start;
+        }
+
+        .name p {
+            font-family: 'Kanit', sans-serif;
+            font-size: 18px;
+            color: rgb(14, 32, 82);
+            letter-spacing: 1px;
+
+        }
+
+        .detail_box p {
+            font-size: 13px;
+        }
+
+        .detail_box {
+            padding-left: 20px;
+            margin-bottom: 2px;
+
+
+        }
+
+        .other_details {
+            padding-top: 5px;
+
+            padding-bottom: 5px;
+
+            background-color: rgba(0, 0, 0, 0);
+            margin-bottom: 0;
+        }
+
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500;600&display=swap');
+
+
+    .order_data{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .orders{
+        position: relative;
+        width: 100%;
+        align-self: center;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        height: fit-content;
+
+        border-radius: 10px;
+        overflow: hidden;
+
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        background-color: #0db7dd32;
+        backdrop-filter: blur(5px);
+        
+    }
+    .my_orders{
+        position: relative;
+        height: 40px;
+        align-items: center;
+        padding-left: 20px;
+        display: flex;
+        width: 100%;
+       
+    }
+ 
+    .my_orders p{
+        color: #0b1d0eaf;
+        font-size: 20px;
+        font-family: 'Kanit', sans-serif;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid rgb(61, 55, 240);
+
+    }
+    .all_orders{
+        position: relative;
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 0px;
+        justify-content: space-around;
+        padding: 5px;
+        padding-top: 0px;
+        
+    }
+    .order_show_cart{
+        position: relative;
+        width: 140px;
+        height: 200px;
+        background-color: #4a81ea;
+        overflow: hidden;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    
+
+    .order_show_cart .order_photo{
+        position: absolute;
+        top: 0;
+        left:0;
+        height: 100%;
+        width: 100%;
+    }
+    .order_show_cart .order_photo img{
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+    .order_show_cart .order_cart_details{
+        position:absolute;
+        bottom: 0;
+        left:0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(13, 71, 102, 0.6);
+        height: fit-content;
+        width: 100%;
+        padding: 5px;
+
+
+    }
+    .order_data{
+        padding: 0;
+        background-color: transparent;
+    }
+    .order_show_cart .order_cart_details .order_book_name{
+        color: rgba(255, 253, 153, 0.96);
+        font-family: 'Signika', sans-serif;
+        font-size: 18px;
+        margin-bottom: 3px;
+
+    }
+    .order_show_cart .order_cart_details .order_book_price{
+        background-color: rgba(248, 62, 202, 0.55);
+        width: fit-content;
+        padding: 1px 10px;
+        border-radius: 20px;
+    }
+    .order_show_cart .order_cart_details .order_book_price p{
+        font-family: 'Merienda', cursive;
+        color: #020202;
+        font-size: 13px;
+
+    }
+    .stattus_text{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        height: fit-content;
+
+        background-color: rgba(19, 21, 28, 0.89);
+
+        padding: 5px;
+    }
+    .stattus_text p{
+        color: #f8709b;
+        font-family: 'Courgette', cursive;
+        font-size: 13px;
+    }
+    .havent_order{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background-color: rgba(241, 60, 60, 0.28);
+    }
+    .havent_order p{
+        font-size: 20px;
+        font-family: 'Courgette', cursive;
+        color: rgba(13, 71, 102, 0.62);
+
+    }
+    @media only screen and (max-width: 550px){
+        .order_show_cart{
+        position: relative;
+        height: 150px;
+        width:32%;
+        background-color: #4a81ea;
+        overflow: hidden;
+        border-radius: 5px;
+        margin: 0px;
+        margin-bottom: 6px;
+
+    }
+    .order_show_cart .order_photo{
+        position: absolute;
+        top: 0;
+        left:0;
+        height: 100%;
+        width: 100%;
+    }
+    .order_show_cart .order_photo img{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .all_orders{
+        justify-content: space-between;
+        padding: 2px;
+    }
+    .order_show_cart .order_cart_details .order_book_name{
+        font-size: 14px;
+
+    }
+    .order_show_cart .order_cart_details .order_book_price{
+        background-color: rgba(248, 62, 202, 0.55);
+        width: fit-content;
+        padding: 1px 10px;
+        border-radius: 20px;
+    }
+    .order_show_cart .order_cart_details .order_book_price p{
+        font-family: 'Merienda', cursive;
+        color: #020202;
+        font-size: 11px;
+
+    }
+    
+
+
+    }
+</style>
+    
+    <!----Profile detains---->
+    <div class="profile_container">
+        <div class="profile_details">
+            <!------Photo and name------>
+            <div class="photo_name">
+                <div class="photo">
+                    <div class="photo_div">
+                        <img src="{{ request.user.customer.photo.url }}">
+                    </div>
+
+                </div>
+                <div class="name">
+                    <p>{{ request.user.username }}</p>
+                </div>
+            </div>
+            <!--------details--------->
+            <div class="other_details">
+                <div class="detail_box" >
+                    <p style="font-family: 'ABeeZee', sans-serif;font-style: normal;padding: 0;margin-right: 5px;
+                    font-size:14px;">Email: </p>
+                    <p style="padding: 0;margin:0;font-family: 'ABeeZee', sans-serif;color: #acacac;font-size:14px;">{{ request.user.email }}</p>
+                </div>
+                <hr>
+                <br>
+                <div class="detail_box">
+                    <p style="font-family: 'ABeeZee', sans-serif;font-style: normal;padding: 0;margin-right: 5px;font-size:14px;">Phone: </p>
+                    <p style="padding: 0;margin:0;font-family: 'ABeeZee', sans-serif;color: #ff7474;font-size:14px;">{{ request.user.customer.phone }}</p>
+                </div>
+                <hr>
+                <br>
+                <div class="detail_box">
+                    <p style="font-family: 'ABeeZee', sans-serif;font-style: normal;padding: 0;margin-right: 5px;font-size:14px;">Address: </p>
+                    <p style="font-size:12.5px;padding: 0;margin:0;font-family: 'ABeeZee', sans-serif;color: #a7f192;">{{ request.user.customer.address }}</p>
+                </div>
+                <hr>
+            </div>
+
+            <div class="edit_profile">
+                <i class="far fa-edit"></i>
+            </div>
+
+        </div>
+        <!----------order detail--------->
+        <div class="order_data">
+            <div class="count_cart">
+                <div class="cart_disp" id="total_order">
+                    <div class="cart_title">
+                        <p>
+                            Total orders
+
+                        </p>
+
+                    </div>
+                    <div class="cart_body">
+                        <p class="number_text">
+                            {{ total_order }}
+                        </p>
+                    </div>
+                </div>
+                <div class="cart_disp" id="pending_order">
+                    <div class="cart_title">
+                        <p>Pending order</p>
+                        
+                    </div>
+                    <div class="cart_body">
+                        <p class="number_text">
+                            {{ pending_order }}
+                        </p>
+                    </div>
+                </div>
+                 <div class="cart_disp" id="delevered_order">
+                    <div class="cart_title">
+                        <p>Delevered</p>
+
+                    </div>
+                    <div class="cart_body">
+                        <p class="number_text">
+                            {{ delevered }}
+                        </p>
+                    </div>
+                </div>
+                 <div class="cart_disp" id="on_the_way">
+                    <div class="cart_title">
+                        <p>On the way</p>
+
+                    </div>
+                    <div class="cart_body">
+                        <p class="number_text">
+                            {{ on_the_way }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!---------orders----------->
+            <div class="orders">
+            <div class="my_orders">
+                <p>My orders</p>
+            </div>
+                <!----------Django code here-------->
+                {% if total_order != 0 %}
+                    <div class="all_orders">
+                    {% for order in orders %}
+                        <div class="order_show_cart" style="overflow: hidden;">
+                        <div class="order_photo">
+                            <img src="{{ order.product.cover.url }}">
+                        </div>
+                        <div class="order_cart_details" style="backdrop-filter: blur(5px);">
+                            <div class="order_book_name"><p>{{ order.product.name }}</p></div>
+                            <div class="order_book_price"><p>{{ order.product.price }} Tk</p></div>
+                        </div>
+                        <div class="stattus_text">
+                            <p>{{ order.stattus }}</p>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                    {% else %}
+                    <div class="havent_order"><p>You have no order.</p></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

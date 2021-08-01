@@ -1,0 +1,299 @@
+{% load static %}
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/c0c844b1b2.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&display=swap');
+
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+
+            }
+            body{
+                background-color: rgb(5, 22, 56);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .book_add_container{
+                height: fit-content;
+                display: flex;
+                height: fit-content;
+                width: 500px;
+                background-color: rgba(255, 255, 255, 0.136);
+                backdrop-filter: blur(5px);
+                align-items: center;
+                justify-content: center;
+                
+
+            }
+            .boitoi_logo{
+                position: absolute;
+                top: 0;
+                display: flex;
+
+                justify-content: center;
+                height: 100px;
+                width: 200px;
+                padding-top: 15px;
+                background-color: rgba(240, 248, 255, 0.83);
+                clip-path: circle(50.0% at 50% 0);
+                box-sizing: border-box;
+                
+            }
+            .boitoi_logo p{
+                font-family: 'Righteous', cursive;
+                font-size: 30px;
+                color: rgba(0, 0, 0, 0.639);
+
+            }
+            .book_add{
+                position: relative;
+                height: fit-content;
+                width: fit-content;
+                margin-top: 100px;
+                margin-bottom: 20px;
+                
+
+            }
+            .book_add_form{
+                display: grid;
+                grid-template-columns: 200px auto;
+                box-sizing: border-box;
+
+            }
+            .book_add_form .without_cover input,select{
+                position: relative;
+                margin: 4px;
+                width: 240px;
+                border: none;
+                outline: none;
+                box-sizing: border-box;
+                height: 35px;
+                padding: 0px 15px;
+                border-radius: 10px;
+                background-color: rgba(250, 235, 215, 0.517);
+            }
+            .without_cover{
+                position: relative;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .cover{
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: fit-content;
+                width: 100%;
+                flex-direction: column;
+                box-sizing: border-box;
+                overflow: hidden;
+
+
+            }
+            .book_cover{
+                margin-top: 2px;
+                height: 200px;
+                width: 80%;
+                box-sizing: border-box;
+                position: relative;
+                border: 2px solid black;
+                outline: none;
+            }
+            .cover #id_cover{
+                position: relative;
+                width: 80%;
+                margin-top: 10px;
+                background-color: rgba(0, 0, 0, 0.524);
+
+            }
+            .submit_button{
+                width: 100px;
+                margin-top: 10px;
+                height: 35px;
+                border: none;
+                outline: none;
+                border-radius: 17.5px;
+
+                display: grid;
+                grid-template-columns: 30px auto;
+                grid-template-rows: 35px ;
+                overflow: hidden;
+                background-color: rgb(8, 25, 59);
+            }
+            .save_icon{
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 100%;
+            }
+            .save_icon i{
+                font-size: 16px;
+                margin-left: 5px;
+                color: rgb(255, 255, 255);
+            }
+            .save_text{
+                position: relative;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                justify-content: center;
+                border-radius: 17.5px;
+                background-color: rgba(255, 255, 255, 0.741);
+            }
+            .save_text p{
+                font-family: 'Ubuntu', sans-serif;
+                color: rgb(63, 67, 144);
+                font-size: 15px;
+            }
+            .submit_button:hover{
+                grid-template-columns: auto 0px;
+                background-color: #04ab41;
+                cursor: pointer;
+                
+                
+            }.submit_button:hover i{
+                margin: 0;
+                color: rgb(255, 255, 255);
+                font-size: 18px;
+            }
+            .submit_button:hover .save_icon{
+                transition: all 0.5s;
+                width: 100%;
+            }
+            .book_add_form .without_cover input:focus,select:focus{
+                background-color: aliceblue;
+            }
+            input::placeholder{
+                color: #0c0c0c;
+            }
+            #id_description{
+                position: relative;
+                margin: 4px;
+                width: 240px;
+                border: none;
+                outline: none;
+                box-sizing: border-box;
+                height: 35px;
+                padding: 0px 15px;
+                
+                background-color: rgba(250, 235, 215, 0.517);
+            }
+            .book_input{
+                border: 2px solid rgba(243, 243, 243, 0.734);;
+                border-radius: 15px;
+                margin-bottom: 4px;
+            }
+            .book_input p{
+                font-family: 'Baloo Chettan 2', cursive;
+                margin-left: 10px;
+                padding: 0;
+                font-size: 14px;
+                margin-bottom: 0;
+                color: rgb(92, 159, 201);
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <div>
+            <div class="book_add_container">
+                <div class="boitoi_logo"><p>boitoi</p></div>
+                <div class="book_add">
+                    <form method="POST" class="book_add_form" enctype="multipart/form-data" action="">
+                        {% csrf_token %}
+                        <div class="cover">
+                            <img class="book_cover" >
+                            {{form.cover}}
+                        </div>
+                        <div class="without_cover">
+                            
+                            <div class="book_input">
+                                <p>Book name:</p>
+                                {{form.name}}
+                            </div>
+                            <div class="book_input">
+                                <p>Author name:</p>
+                                {{form.author}}
+                            </div>
+                            <div class="book_input">
+                                <p>Book catagory:</p>
+                                {{form.type}}
+                            </div>
+                            <div class="book_input">
+                                <p>Book price:</p>
+                                {{form.price}}
+                            </div>
+                            <div class="book_input">
+                                <p>About book:</p>
+                                {{form.description}}
+                            </div>
+                            <div class="book_input">
+                                <p>Publisher:</p>
+                                {{form.publisher}}
+                            </div>
+                            <button type="submit" class="submit_button">
+                                <div class="save_icon">
+                                    <i class="fas fa-save"></i>
+                                </div>
+                                <div class="save_text"><p>Save</p></div>
+                            </button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        {
+            let name=document.getElementById('id_name');
+            name.placeholder="Book name...";
+            let author= document.querySelectorAll("#id_author option");
+            author[0].innerHTML="Select author...";
+            author[0]. setAttribute("disabled", "disabled");
+            let catagory=document.querySelectorAll("#id_type option");
+            catagory[0].innerHTML="Select catagory...";
+            catagory[0]. setAttribute("disabled", "disabled");
+            document.getElementById('id_price').placeholder="Price...";
+            let publisher=document.querySelectorAll("#id_publisher option");
+            publisher[0].innerHTML="Select publications...";
+            publisher[0]. setAttribute("disabled", "disabled");
+            document.getElementById('id_description').placeholder='Descriptions...';
+            // upload image
+            document.querySelector(".cover #cover-clear_id").style.display='none';
+            document.querySelector(".cover label").style.display='none';
+            document.querySelector(".cover br").style.display='none';
+            let current_cover=document.querySelector(".cover a");
+            console.log(current_cover.href);
+            current_cover.style.display="none";
+            let image_upload=document.getElementById('id_cover');
+            let image_show=document.querySelector('.book_cover');
+            image_show.src=current_cover.href;
+            image_upload.addEventListener('change',function(){
+                image_show.src=URL.createObjectURL(image_upload.files[0])
+            });
+            let cover=document.querySelector('.cover');
+            cover.childNodes[2].remove('Currently:');
+            cover.childNodes[8].remove('Change:');
+
+
+            
+        }
+    </script>
+</html>

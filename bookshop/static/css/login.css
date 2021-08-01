@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Ubuntu&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            .container{
+                position: relative;
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(4, 54, 86);
+            }
+            .form_container{
+                position: relative;
+                height: 300px;
+                width: 300px;
+
+                background-color: rgba(174, 174, 174, 0.22);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+            }
+            .form_container form{
+                position: relative;
+                width: 80%;
+                padding: 0;
+                margin:0;
+                padding-top: 40px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            .logo{
+                position: absolute;
+                top: 0;
+                width: 80%;
+                border-radius: 0px 0px 10px 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                background-color: rgba(0, 0, 0, 0.07);
+            }
+            .logo p{
+                font-family: 'Righteous', cursive;
+                font-size: 30px;
+                color: rgba(0, 0, 0, 0.49);
+            }
+            .input_div{
+                position: relative;
+                height: 35px;
+                width: 100%;
+                margin-top: 15px;
+                background-color: rgba(22, 70, 91, 0.8);
+                display: grid;
+                border-radius: 17.5px;
+                grid-template-columns: 40px auto;
+
+            }
+            .icon{
+                position: relative;
+                width: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+            .icon span{
+                color: #dcecfc;
+                font-size: 22px;
+                padding-left: 5px;
+            }
+            .input_container{
+                position: relative;
+                width: 100%;
+
+            }
+            .input_container input{
+                height: 35px;
+                width: 100%;
+                border: none;
+                outline: none;
+                border-radius: 17.5px;
+                padding-left: 15px;
+                background-color: rgba(243, 248, 252, 0.44);
+
+
+            }
+            .input_container input::placeholder{
+                color: #fdcff6;
+            }
+            #submit{
+                width: 50%;
+                margin-top: 35px;
+                border: none;
+                outline: none;
+                align-items: center;
+            }
+            #submit .input_container{
+                height: 100%;
+                width: 100%;
+                position: relative;
+                background-color: darkblue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 17.5px;
+            }
+            #submit .input_container p{
+                padding-left: 0;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+                color: #0092d7;
+                position: relative;
+                font-size: 15px;
+
+            }
+            #submit:hover{
+                grid-template-columns: auto 0px;
+                cursor: pointer;
+                background-color: #04ab41;
+
+            }
+            #submit:hover .icon{
+                position: relative;
+                width: 100%;
+                transition: all 0.5s;
+                padding: 0;
+            }
+            #submit:active{
+                background-color: rgba(4, 171, 65, 0.67);
+
+            }
+            .sign_up{
+                position: absolute;
+                bottom: 0;
+                background-color: rgba(108, 200, 238, 0.52);
+                padding: 5px 15px 10px;
+                border-radius: 10px 10px 0px 0px;
+            }
+            .sign_up p{
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 15px;
+                color: #535252;
+
+            }
+            .sign_up a{
+                text-decoration: none;
+                color: #005afc;
+                font-weight: bold;
+            }

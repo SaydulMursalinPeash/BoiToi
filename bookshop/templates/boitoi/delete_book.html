@@ -1,0 +1,104 @@
+{% load static %}
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&display=swap');
+
+
+
+
+            body{
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                background-color: rgb(18, 38, 62);
+            }
+            .container{
+                position: relative;
+                height: 200px;
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, 0.197);
+                padding: 40px;
+                box-sizing: border-box;
+                clip-path: polygon(100% 30%, 100% 100%, 0% 100%, 0% 0%, 85% 1%);
+                
+
+            }
+            form{
+                padding: 0;
+                margin: 0;
+                height: fit-content;
+
+                display: flex;
+                width:100%;
+                justify-content: center;
+            }
+            form a{
+                position: relative;
+                text-decoration: none;
+                font-size: 15px;
+                width: 100px;
+                padding: 5px 16px;
+                height: 35px;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                color: black;
+                background-color: rgb(255, 222, 34);
+                margin-left: 5px;
+
+            }
+            form a:hover{
+                background-color: rgb(243, 238, 91);
+            }
+            form button{
+                position: relative;
+                text-decoration: none;
+                font-size: 15px;
+                width: 100px;
+                height: 35px;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                padding: 5px 16px;
+                justify-content: center;
+                box-sizing: border-box;
+                color: black;
+                background-color: rgb(255, 34, 34);
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+            p{
+                font-family: 'Baloo Chettan 2', cursive;
+                font-size: 18px;
+                color: rgb(236, 236, 236);
+            }
+            button:hover{
+                background-color: rgb(245, 86, 86);
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p>Seriously want to delete  "{{book.name}}"  ???</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <a class="cancel" href="{% url 'home' %}">
+                    Cancel
+                </a>
+                <button class="ok_button" type="submit">Delete</button>
+            </form>
+        </div>
+    </body>
+</html>

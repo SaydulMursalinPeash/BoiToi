@@ -1,0 +1,458 @@
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,700;0,900;1,900&display=swap');
+
+.cart_icon{
+    height: 35px;
+    width: 35px;
+    position: relative;
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.cart_icon span{
+    color: rgb(9, 19, 37);
+}
+.cart_icon:hover{
+    background-color: rgba(137, 43, 226, 0.537);
+}
+.cart_icon .cart_count{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    right: 0;
+    bottom: 0px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: brown;
+}
+.cart_icon .cart_count p{
+    color: aliceblue;
+    font-size: 10px;
+}
+.cart_to_order{
+    position: fixed;
+    width: fit-content;
+    padding: 10px;
+    padding-left: 5px;
+    top: 60px;
+    z-index: 6;
+    right: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.762);
+    backdrop-filter: blur(5px);
+    transition: all 0.5s;
+
+    
+}
+hr{
+        border: 0.2px solid rgba(0, 0, 0, 0.109);
+    }
+.cart_actions{
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+}
+.single_order{
+    position: relative;
+    width: fit-content;
+    display: flex;
+    margin: 4px;
+    padding: 5px;
+    flex-direction: row;
+    overflow: hidden;
+   background-color: rgba(230, 230, 230, 0.659);
+    border-radius: 5px;
+}
+.book_image_cart{
+    position: relative;
+    height: 110px;
+    width: 80px;
+    overflow: hidden;
+    margin-right: 5px;
+
+    
+}
+.book_image_cart img{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.single_order_details{
+    position: relative;
+    width: 250px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 110px;
+
+}
+.single_order_details .order_book_name{
+    position: relative;
+    width: 100%;
+}
+.single_order_details .order_book_name p{
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: rgba(7, 12, 62, 0.762);
+
+}
+.single_order_details .order_book_author{
+    position: relative;
+    width: 100%;
+}
+.single_order_details .order_book_author p{
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: rgb(58, 5, 148);
+
+}
+.single_order_details .order_book_price{
+    position: relative;
+    width: 100%;
+}
+.single_order_details .order_book_price p{
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: rgb(7, 43, 126);
+
+}
+.cart_buttons{
+    position: absolute;
+    width: 100%;
+    bottom: -100px;
+    display: flex;
+    justify-content: center;
+
+}
+.single_order:hover .cart_buttons{
+    bottom:0;
+    transition: all 0.5s;
+}
+.cart_buttons .cancel_order{
+    width: 60px;
+    background-color: rgba(255, 89, 89, 0.796);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.986);
+}
+.cart_buttons .payment_method{
+    width: 130px;
+    background-color: rgb(241, 198, 79);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+}
+.cart_to_order.active{
+    right: 0;
+    transition: all 0.5s;
+}
+.go_btn{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(220, 220, 220);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 7px;
+}
+.go_btn i{
+    font-size: 20px;
+}
+.go_btn:hover{
+    background-color: rgb(255, 65, 65);
+}
+.cart_icon.active{
+    background-color:#ff8;
+}
+.empty_cart{
+    position: relative;
+    width:350px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(255, 106, 106);
+
+}
+.empty_cart p{
+    font-size: 17px;
+    color: #ff8;
+    font-family: 'Poppins', sans-serif;
+}
+@media only screen and (max-width:850px){
+    .floating_menu{
+        visibility: visible;
+    }
+    
+    .others{
+        position: fixed;
+        clip-path: circle(0.0% at 100% 100%);
+        background-color: #ffffffd2;
+        height: 100vh;
+        width: 100%;
+        transition: all 0.5s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        backdrop-filter: blur(5px);
+        z-index: 5;
+    }
+    .others .menu-container ul li a p{
+        color:#23a9e2;
+    }
+    .others .menu-container ul li:hover p{
+        color: rgb(253, 68, 105);
+    }
+    .menu-container{
+        position: relative;
+        height: fit-content;
+        margin-top: 50px;
+        width: fit-content;
+    }
+    .menu-container ul{
+        height: fit-content;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .menu-container ul li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+    }
+    .logo_container{
+        width: 40%;
+    }
+    .floating_menu div{
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: #23a9e2;
+        transition: all 0.5s;
+    
+    
+    }
+    #a{
+        position: absolute;
+        top:15px;
+        background-color: blue;
+    }
+    #b{
+        position: absolute;
+        left: 9px;
+        background-color: rgb(255, 111, 55);
+    }
+    #c{
+        position: absolute;
+        right:0;
+        top:15px;
+    }
+
+    .floating_menu.active #a{
+        transform: translateY(-15px);
+        transition: all 0.3s;
+    }
+    .floating_menu.active #b{
+        transform: translateY(15px);
+        transition: all 0.5s;
+    }
+    .floating_menu.active #c{
+        transform: translateY(-15px);
+        transition: all 0.6s;
+    }
+    .floating_menu #a{
+
+        transition: all 0.3s;
+    }
+    .floating_menu #b{
+        transition: all 0.5s;
+    }
+    .floating_menu #c{
+        transition: all 0.6s;
+    }
+.others.active{
+        position: fixed;
+        clip-path: circle(141.4% at 100% 100%);
+        transition: all 0.5s;
+    
+    }
+    .others .search_container{
+        position: relative;
+       
+        width: 70%;
+    }
+    .search_container form{
+        background-color: #00457ee5;
+    }
+
+    .profile_shortcut{
+        height: 100px;
+    }
+    .menu-container ul li:hover{
+        background-color: #5a5a5a21;
+    
+    
+    }
+    
+}
+.nav_container{
+    position: relative;
+    height:70px;
+    width: 100%;
+    top:0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.559);
+    backdrop-filter: blur(10px);
+}
+
+</style>
+<!----Navigation BAr---->
+<div class="nav_container" style="position: fixed;z-index:4;">
+    <div class="navigation_bar">
+        <!----LOGO container---->
+        <div class="logo_container"><p class="logo">boitoi</p> </div>
+        <!---Others---->
+        <div class="others">
+            
+            <!-----Search icon----->
+            <div class="search_container">
+                <form method="POST">
+                    <input type="text">
+                    <button type="submit"><span class="material-icons">search</span></button> 
+                </form>
+            </div>
+            <!-----Menu----->
+            <div class="menu-container">
+                <ul>
+                    <li><a href="{% url 'home' %}"><p>Home</p></a></li>
+                    {% if request.user.is_superuser %}
+                    <hr>
+                    <li><a href="{% url 'admin_dashboard' %}"><p>Dashboard</p></a></li>
+                    {% endif %}
+                    <hr>
+                    <li><a href="#"><p>About us</p></a></li>
+
+
+                </ul>
+            </div>
+            <!-----Profile shortcut on stattus bar---->
+            <div class="profile_shortcut">
+                {% if request.user.is_authenticated %}
+                <div class="profile-name">
+                    <a href="{% url 'profile' %}">{{ request.user.username }}</a>
+                </div>
+                <div class="log_out_nav"><a href="{% url 'log_out' %}"><i class="fas fa-sign-out-alt"></i></a></div>
+                {% else %}
+                <div class="register_icon"><a href="{% url 'register' %}">Register</a></div>
+                {% endif %}
+            </div>
+        </div>
+        <!---------------------cart icon--------------------->
+        <div class="cart">
+
+            <div class="cart_icon">
+                <span class="material-icons">shopping_cart</span>
+                <div class="cart_count"><p>{{ cart_count }}</p></div>
+            </div>
+            <div class="cart_to_order">
+                <div class="go_btn">
+                    <i class="fas fa-times"></i>
+
+                </div>
+                <div class="cart_actions">
+                    {% if request.user.is_authenticated %}
+                    {% if cart_count != 0 %}
+                    {% for cart in carts %}
+                        <div class="single_order">
+                            <div class="book_image_cart">
+                                <img src="{{ cart.book.cover.url }}">
+                            </div>
+                            <div class="single_order_details">
+                                <div class="order_book_name">
+                                    <p>{{ cart.book.name }}</p>
+                                </div>
+                                <div class="order_book_author">
+                                    <p>{{ cart.book.author.name }}</p>
+                                </div>
+                                <div class="order_book_price"><p>{{ cart.book.price }} TK</p></div>
+                                <div class="cart_buttons"><a href="{% url 'cancel_cart' cart.id %}" class="cancel_order">Cancel</a><a class="payment_method" href="{% url 'payment_method' cart.id %}">Payment methods</a></div>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+
+
+                    {% else %}
+                    <div class=empty_cart>
+                        <p>Your Cart is Empty!!!!!!</p>
+                    </div>
+
+                    {% endif %}
+                    {% endif %}
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!----Floating menu-->
+<div class="floating_menu">
+    <div id="a"></div>
+    <div id="b"></div>
+    <div id="c"></div>
+</div>
+<script>
+    {
+        let cart_container=document.querySelector(".cart_to_order");
+        let cart_button=document.querySelector(".cart_icon");
+        let remove_btn=document.querySelector(".go_btn");
+        cart_button.addEventListener("click",function(){
+            cart_container.classList.toggle("active");
+            cart_button.classList.toggle("active");
+
+        });
+        remove_btn.addEventListener("click",function(){
+            cart_container.classList.remove("active");
+            cart_button.classList.remove("active");
+        })
+        
+        
+        
+        
+    }
+</script>

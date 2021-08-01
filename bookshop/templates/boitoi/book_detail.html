@@ -1,0 +1,456 @@
+{% extends 'boitoi/main.html' %}
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Signika:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+
+
+
+    .book_detail_container{
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 350px auto;
+        border-radius: 10px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .image_and_detail{
+        position: relative;
+        width: 100%;
+        padding: 7px;
+        box-sizing: border-box;
+        
+    }
+    .book_detail_photo{
+        position: relative;
+        width: 100%;
+        height: 450px;
+        box-sizing: border-box;
+        
+        border-radius: 10px;
+    }
+    .book_detail_photo img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        transform-origin: left top 0px;
+        transform-style: preserve-3d;
+        border-radius: 10px;
+        transition: all 0.5s;
+    }
+    .book_detail_photo:hover img{
+        cursor: pointer;
+    transform: rotateY(-15deg) rotateZ(0.5deg);
+    perspective: 800px;
+    perspective-origin: left;
+    transition: all 0.2s;
+    }
+    .fake_page{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        background-color: rgb(169, 169, 169);
+        border-radius: 10px;
+    }
+    .book_name_detail{
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(244, 255, 35, 0.646);
+        box-sizing: border-box;
+        margin-top: 5px;
+        box-shadow: 2px 0px 10px gray;
+        
+    }
+    .book_name_detail .book_name{
+        font-family: 'Play', sans-serif;
+        color: rgb(165, 10, 62);
+        font-size: 20px;
+
+    }
+    .book_name_detail .book_author{
+        font-family: 'Bree Serif', serif;
+        color: rgb(0, 0, 0);
+        font-size: 15px;
+
+    }
+    .book_reating{
+        position: absolute;
+        display: flex;
+        bottom: 5px;
+        right: 5px;
+        width: 50px;
+        align-items: center;
+        justify-content: space-around;
+        background-color: rgba(0, 0, 0, 0.456);
+        padding: 3px 5px;
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+    }
+    .book_reating i{
+        color: rgb(245, 236, 116);
+        font-size: 15px;
+    }
+    .book_reating p{
+        font-family: 'Play', sans-serif;
+        color: rgb(255, 255, 172);
+    }
+    .description{
+        position: relative;
+        display: flex;
+        padding: 5px;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .description .book_description,.author_description,.book_comments{
+        position: relative;
+        width: 100%;
+        
+        border-radius: 10px;
+        margin-bottom: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .title{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        border-bottom: 2px solid rgb(92, 92, 248);
+        width: fit-content;
+        color: rgb(9, 89, 136);
+        margin-bottom: 10px;
+        font-size: 15px;
+
+    }
+    .book_description{
+        background-color: rgba(253, 223, 103, 0.429);
+    }
+    .author_description{
+        background-color: rgba(117, 175, 255, 0.681);
+        
+    }
+    .about_book,.about_author{
+        font-family: 'Poppins', sans-serif;
+        padding-left: 25px;
+        font-size: 14px;
+    }
+    .author_div{
+        position: relative;
+        width: 100%;
+        display: flex;
+    }
+    @media only screen and (max-width:700px){
+        .book_detail_container{
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 200px auto;
+        border-radius: 10px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .book_detail_photo{
+        position: relative;
+        width: 100%;
+        height: 220px;
+        box-sizing: border-box;
+        
+        border-radius: 10px;
+    }
+    .book_name_detail .book_name{
+        font-family: 'Play', sans-serif;
+        color: rgb(165, 10, 62);
+        font-size: 16px;
+
+    }
+    .book_name_detail .book_author{
+        font-size: 13px;
+    }
+    }
+    /*Css for Comment*/
+    .book_comments{
+        background-color: rgba(106, 163, 255, 0.85);
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+    .previous_comment_box{
+        position: relative;
+        width: 100%;
+        background-color: rgba(220, 220, 220, 0.858);
+        padding: 15px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-bottom: 7px;
+        max-height: 350px;
+        overflow-y: scroll;
+
+    }
+    .add_comment_box{
+        position: relative;
+        padding: 0;
+        width: 100%;
+        margin:0;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: auto 50px;
+        border-radius: 30px;
+        overflow: hidden;
+
+
+    }
+    .add_comment_box input{
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+        height: fit-content;
+        padding: 10px 15px;
+        font-size: 15px;
+        border-radius: 30px;
+        word-wrap: break-word;
+        box-sizing: border-box;
+        
+    }
+    .add_comment_box button{
+        display:flex;
+        position: relative;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background-color: rgb(220, 242, 255);
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    .add_comment_box button i{
+        color: rgb(19, 92, 238);
+        font-size: 20px;
+    }
+    .add_comment_box button:hover{
+        background-color: rgba(255, 228, 24, 0.912);
+    }
+    .add_comment_box button:hover i{
+        color: black;
+    }
+    .comment_show_box{
+        width: fit-content;
+        max-width: 400px;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: 50px auto;
+        margin-bottom: 5px;
+    }
+    .comment_text{
+        box-sizing: border-box;
+        position: relative;
+        padding: 0;
+        display: flex;
+        
+        
+        border-radius: 30px;
+        padding: 5px 20px;
+        height: fit-content;
+        background-color: rgba(69, 100, 255, 0.742);
+        margin-left: 5px;
+        flex-direction: column;
+        padding-bottom: 8px;
+    }
+    .comment_text_para{
+        padding: 0;
+        margin: 0;
+        word-wrap: break-word;
+        font-family: 'Ubuntu', sans-serif;
+        color: rgba(87, 1, 75, 0.892);
+        font-size: 15px;
+    }
+   
+
+
+    .cmment_customer_name{
+        position: relative;
+        width: fit-content;
+        text-align: left;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.62);
+        margin-bottom: 3px;
+        font-family: 'Bree Serif', serif;
+        color: rgb(1, 19, 36);
+        font-size: 14px;
+    }
+    .comment_customer_photo{
+        height: 40px;width: 40px;border-radius: 50%;box-sizing: border-box;overflow: hidden;
+    }
+    .comment_customer_photo img{
+        position: relative;height: 100%;width: 100%;
+    }
+    .cmment_customer_name span{
+        color: rgb(56, 56, 56);font-family:'Ubuntu', sans-serif;font-size: 13px;border: none;
+    }
+    .commant_text_para{
+        padding-left: 20px;
+    }
+    .book_edit_button{
+   position: absolute;
+   height: 20px;
+   width: 20px;
+   border-radius: 50%;
+   background-color: rgb(86, 193, 247);
+   outline: none;
+   top: 5px;
+   border: 1.5px solid black;
+   right: 5px;
+   cursor: pointer;
+   color: black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+}
+.book_edit_button i{
+   font-size: 12px;
+}
+.book_edit_button:hover{
+   background-color: aliceblue;
+}
+
+</style>
+<div class="book_detail_container">
+    <div class="image_and_detail">
+        <div class="book_detail_photo">
+            <!---------Book image-->
+            <div class="fake_page"></div>
+            <img src="{{ book.cover.url }}">
+
+        </div>
+
+        <div class="book_name_detail">
+            {% if request.user.is_superuser %}
+            <a class="book_edit_button" href="{% url 'edit_book' book.id %}"><i class="fas fa-edit"></i></a>
+               {% endif %}
+            <p class="book_name">
+                {{ book.name }}
+            </p>
+            <p class="book_author">
+                {{ book.author.name }}
+            </p>
+            <div class="book_reating">
+                <!--Reating show-->
+                <i class="fas fa-star"></i>
+                 <p> {{ book.reating }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="description">
+        <div class="book_description">
+            <p class="title">
+                About book
+            </p>
+            <p class="about_book">
+                {{ book.description }}
+            </p>
+        </div>
+        <div class="author_description">
+            <p class="title">
+                About author
+            </p>
+            <div class="author_div">
+                <p class="about_author" style="float: left;">
+                    {{ book.author.info }}
+                    
+                </p>
+                <div class="author_image" style="float: right;display: flex;align-items: center;justify-content: center;box-sizing: border-box;flex-direction: column;
+                ">
+                    <img src="{{ book.author.photo.url }}" style="position: relative;height: 100px;width: 100px;
+                    border-radius: 50%;">
+                    <p style="padding: 4px 10px;font-family: 'Play', sans-serif;display: flex;text-align: center;position: relative;
+                    width: 100px;font-size: 13px;color: rgb(0, 51, 95);display: flex;justify-content: center;">{{ book.author.name }}</p>
+                </div>
+            </div>
+        </div>
+        <!----Comments-->
+        <div class="book_comments">
+            <p class="title">
+                Comments
+            </p>
+
+            <div class="previous_comment_box" id="pre_comment_box">
+                {% for comment in comments %}
+                <div class="comment_show_box">
+                    <div class="comment_customer_photo">
+                        <img src="{{ comment.customer.photo.url }}">
+                    </div>
+                    <div class="comment_text">
+                        <p class="cmment_customer_name">
+                            {{ comment.customer.name }} <span>| {{ comment.time_created }}</span>
+                            </p>
+                        <p class="comment_text_para">
+                            {{ comment.comment }}
+                        </p>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="add_comment_box">
+                    <input type="text" name="comment_text" placeholder="Put your comment here..." rows="5" id="comment_text">
+                    <button class="submit_comment"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        </div>
+        
+        
+    </div>
+</div>
+{{ page_path|json_script:'page_path' }}
+<script>
+    {
+        var element = document.getElementById("pre_comment_box");
+        element.scrollTop = element.scrollHeight;
+    }
+{   
+    const page_path=JSON.parse(document.getElementById("page_path").textContent)
+    socket= new WebSocket(
+        'ws://'+window.location.host+'/ws/about_book/'+"{{book.name}}"+"/"+"{{book.id}}"+"/"
+        ); 
+    console.log(socket)
+    let comment_box=$(".previous_comment_box");
+    let clear_text=$("#comment_text");
+    let submit_comment=document.querySelector(".submit_comment").addEventListener("click",function(){
+        console.log("clicked")
+        let comment_text=document.getElementById("comment_text").value;
+        let pk="{{book.id}}"
+        let data={
+            "comment":comment_text,
+            "pk":pk
+        }
+        document.getElementById('comment_text').value = ''
+        socket.send(JSON.stringify(data))
+
+    });
+
+    socket.onmessage=(e)=>{
+        let data=e.data;
+        data=JSON.parse(data)
+        comment_box.append("<div class="+"comment_show_box"+"><div class="+"comment_customer_photo"+"><img src="+"data:image/png;base64,"+
+            data.photo+"></div><div class="+"comment_text"+"><p class="+"cmment_customer_name"+">"+data.user+" <span>| "+data.time+"</span></p><p class="+"comment_text_para"+">"+data.comment+"</p></div></div>")
+        var element = document.getElementById("pre_comment_box");
+        element.scrollTop = element.scrollHeight;
+    }
+    
+}
+
+
+
+</script>
+
+{% endblock %}

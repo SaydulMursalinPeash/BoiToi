@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background:linear-gradient(to right bottom,rgba(91, 190, 233, 0.415),transparent);
+            background-repeat: no-repeat;
+            overflow-y: overlay;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .content{
+        position: absolute;
+        padding-top: 70px ;
+        width: 1300px;
+        height: auto;display: flex;justify-content: center;
+        }
+        @media only screen and (max-width:1300px){
+            .content{
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 550px){
+            .content{
+                padding-top: 55px;
+            }
+
+}
+    </style>
+    
+    <title>Boitoi...</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/navbar.css' %}">
+    <script src="https://kit.fontawesome.com/c0c844b1b2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    {% include 'boitoi/navbar.html' %}
+    <div class="content">
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+<script src="{% static '/js/navbar.js' %}"></script>
+</body>
+</html>

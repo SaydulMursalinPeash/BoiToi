@@ -1,0 +1,77 @@
+{% load static %}
+<html>
+    <head>
+        <style>
+
+        </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form_container" style="height: 400px">
+                <div class="logo">
+                    <p>boitoi</p>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">person_outline</span>
+                        </div>
+                        <div class="input_container">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">mail_outline</span>
+                        </div>
+                        <div class="input_container">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">password</span>
+                        </div>
+                        <div class="input_container">
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">password</span>
+                        </div>
+                        <div class="input_container">
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+
+
+                    <button class="input_div" id="submit" type="submit">
+                        <div class="icon">
+                            <span class="material-icons">app_registration</span>
+                        </div>
+                        <div class="input_container">
+                            <p>Register</p>
+                        </div>
+                    </button>
+                </form>
+                <div class="sign_up">
+                    <p>Already have an account? <a href="{% url 'log_in' %}">Log in</a>. </p>
+                </div>
+            </div>
+        </div>
+    <script src="{% static 'js/register.js' %}"></script>
+    <script>
+        {
+            let inputFields=document.getElementsByTagName('input');
+            inputFields[1].placeholder='Username...';
+            inputFields[2].placeholder='Email...';
+            inputFields[3].placeholder='New password...';
+            inputFields[4].placeholder='Retype password...';
+        }
+    </script>
+    </body>
+</html>

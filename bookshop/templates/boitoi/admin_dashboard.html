@@ -1,0 +1,253 @@
+{% extends 'boitoi/main.html' %}
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+
+    body{
+        background-color: rgb(0, 57, 93);
+    }
+
+
+
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .dashboard_container{
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        padding: 10px;
+    }
+    .dashboard_count_cart{
+        position: relative;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        
+        box-sizing: border-box;
+        
+    }
+    .count_cart{
+        position: relative;
+        height: 100%;
+        width: 24%;
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        box-shadow: 2px 0px 10px gray;
+    }
+    .count_cart:nth-child(1){
+        background-color: rgb(26, 186, 194);
+    }
+    .count_cart:nth-child(2){
+        background-color: rgb(248, 103, 78);
+    }
+    .count_cart:nth-child(3){
+        background-color: rgb(255, 97, 105);
+    }
+    .count_cart:nth-child(4){
+        background-color: rgb(20, 193, 132);
+    }
+    .cart_title{
+
+        font-family: 'Baloo Chettan 2', cursive;
+        position: relative;
+        width: 100%;
+        text-align: center;
+        height: 45%;
+        color: rgb(66, 43, 51);
+        font-size: 18px;
+        
+        
+        
+    }
+    .count_number{
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+        display: flex;
+    }
+    .count_digit{
+        font-family: 'Baloo Chettan 2', cursive;
+        color: rgb(224, 224, 224);
+        font-size: 22px;
+    }
+    .all_order_manage{
+        position: relative;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+    }
+    .order_show_table{
+        position: relative;
+        width: 100%;
+
+        padding: 0;
+        margin: 0;
+        border-collapse: collapse;
+        box-sizing: border-box;
+
+    }
+    .order_show_table th,td{
+
+        height: fit-content;
+        height: 40px;
+        padding: 5px 8px;
+        text-align: center;
+        box-sizing: border-box;
+        font-family: 'Baloo Chettan 2', cursive;
+        font-size: 14px;
+
+    }
+    tr:nth-child(1){
+        background-color: rgb(132, 0, 48);
+        border-bottom: 0;
+        border-left: none;
+        border-right: none;
+    }
+    td{
+        font-family: 'IBM Plex Sans', sans-serif;
+        
+    }
+    tr{
+        border-bottom: 1px solid gray;
+        border-collapse: collapse;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+    }
+    .Pending{
+        color: rgb(255, 65, 65);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .Delevered{
+        color: rgb(12, 186, 116);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .On.the.way{
+        color: rgb(255, 115, 35);
+        padding: 2px 4px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+    .order_tr:hover{
+        background-color: rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+    }
+
+    .action_order{
+        position: relative;
+        padding: 5px 8px;
+        background-color: rgb(158, 255, 153);
+        text-decoration: none;
+        color: black;
+        border-radius: 10px;
+    }
+    .action_order:hover{
+        background-color: rgb(250, 253, 49);
+    }
+
+
+    /*Edit order*/
+    
+</style>
+
+<div class="dashboard_container">
+    <div class="dashboard_count_cart">
+
+        <div class="count_cart">
+            <p class="cart_title">Total order</p>
+            <hr>
+            <div class="count_number">
+                <p class="count_digit">
+                    {{ all_order }}
+                </p>
+            </div>
+        </div>
+
+        <div class="count_cart">
+            <p class="cart_title">Pending</p>
+            <hr>
+            <div class="count_number">
+                <p class="count_digit">
+                    {{ pending_order }}
+                </p>
+            </div>
+        </div>
+
+        <div class="count_cart">
+            <p class="cart_title">On the way</p>
+            <hr>
+            <div class="count_number">
+                <p class="count_digit">
+                    {{ on_the_way_order }}
+                </p>
+            </div>
+        </div>
+
+        <div class="count_cart">
+            <p class="cart_title">Delevered</p>
+            <hr>
+            <div class="count_number">
+                <p class="count_digit">
+                    {{ delevered_order }}
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+    <hr>
+
+    <div class="all_order_manage">
+        <table class="order_show_table">
+            <tr>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Book</th>
+                <th>Price</th>
+                <th>Pay stattus</th>
+                <th>Pay method</th>
+                <th>Location</th>
+                <th>Stattus</th>
+                <th>Action</th>
+            </tr>
+            {% for order in orders %}
+            <tr class="order_tr" id={{order.id}} value={{order.id}}>
+                <td>{{ order.id }}</td>
+                <td>{{order.customer.name}}</td>
+                <td>{{order.product.name}}</td>
+                <td>{{order.product.price}}</td>
+                <td>{{order.pay_stattus}}</td>
+                <td>{{order.pay_method}}</td>
+                <td>{{ order.shipment_address }}</td>
+                <td ><p class="{{ order.stattus }}">{{ order.stattus }}</p></td>
+                <td><a class="action_order" href="{% url 'edit_order' order.id %}">Edit</a></td>
+
+            </tr>
+            
+            {% endfor %}
+            
+        </table>
+
+    </div>
+    
+</div>
+
+
+{% endblock %}

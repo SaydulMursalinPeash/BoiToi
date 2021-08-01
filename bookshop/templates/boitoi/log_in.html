@@ -1,0 +1,49 @@
+{% load static %}
+<html>
+    <head>
+        <style>
+
+        </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form_container">
+                <div class="logo">
+                    <p>boitoi</p>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">person_outline</span>
+                        </div>
+                        <div class="input_container">
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="input_div">
+                        <div class="icon">
+                            <span class="material-icons">password</span>
+                        </div>
+                        <div class="input_container">
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <button class="input_div" id="submit" type="submit">
+                        <div class="icon">
+                            <span class="material-icons">login</span>
+                        </div>
+                        <div class="input_container">
+                            <p>Log in</p>
+                        </div>
+                    </button>
+                </form>
+                <div class="sign_up">
+                    <p>Haven't an account? <a href="{% url 'register' %}">Register</a>. </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

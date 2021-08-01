@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,700&display=swap');
+
+
+.nav_container{
+    position: relative;
+    height:70px;
+    width: 100%;
+    top:0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.871);
+}
+.navigation_bar{
+    position: relative;
+    height: 100%;
+    width:1300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo_container{
+    position: relative;
+    height: 100%;
+    width: 15%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo_container p{
+    padding: 0;
+    margin:0;
+    font-size: 35px;
+    font-family: 'Righteous', cursive;
+    color: #8c8c8c;
+}
+.others{
+    position: relative;
+    width: 70%;
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+
+    grid-column-gap: 10px;
+    z-index: 5;
+}
+.search_container{
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.search_container form{
+    padding: 0;
+    margin: 0;
+    width: inherit;
+    margin-left: 20px;
+   position: relative;
+    display: grid;
+    grid-template-columns: auto 30px;
+    grid-template-rows: 30px;
+    background-color: #0000001a;
+
+    border-radius: 15px;
+    overflow: hidden;
+}
+.search_container form input{
+    border: none;
+    outline: none;
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    
+    padding-left: 15px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    
+}
+.search_container form button{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    background-color: #e68b8b38;
+    border-radius: 15px;
+
+}
+.search_container form button span{
+    font-size: 20px;
+    color: crimson;
+}
+.search_container form button:hover{
+    background-color: #ffffffc7;
+}
+
+
+.menu-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+.menu-container ul{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.menu-container ul li{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+}
+.menu-container ul li a{
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    padding:5px 10px;
+
+
+}
+.menu-container ul li a p{
+    font-family: 'Baloo 2', cursive;
+    font-size: 17px;
+    color: #aeaeae;
+}
+
+.menu-container ul li:hover a p{
+    color: #23a9e2;
+}
+.profile_shortcut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.floating_menu{
+    height: 30px;
+    width: 30px;
+
+    position: fixed;
+    bottom:50px;
+    right: 50px;
+    visibility: hidden;
+    z-index: 6;
+    
+    
+}
+
+
+        .profile_shortcut{
+            position:relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+
+        }
+        .profile-name{
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 8px;
+            height: fit-content;
+            width: fit-content;
+        }
+        .log_out_nav{
+            height: 25px;
+            width: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgb(251, 180, 180);
+        }
+        .log_out_nav i{
+            font-size: 16px;color: rgb(255, 53, 53);
+        }
+        .log_out_nav a{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .profile-name a{
+            padding: 0;
+            margin: 0;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            color: rgb(44, 146, 220);
+            text-decoration: none;
+
+            z-index: 5;
+        }
+        .register_icon{
+            height: 30px;
+            width: 80px;
+            background-color: rgb(75, 130, 226);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .register_icon a{
+            font-family: 'Ubuntu', sans-serif;
+            text-decoration: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+
+        }
+
+
+@media only screen and (max-width:1300px){
+    .navigation_bar{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width:550px){
+    .nav_container{
+        height: 55px;
+    }
+    .nav_container .navigation_bar .logo_container p{
+        font-size: 25px;
+    }
+    .menu-container ul li a p{
+        font-size: 13px;
+    }
+    .search_container{
+        position: relative;
+        width: 80%;
+    }
+    .search_container form{
+        width: 100%;
+    }
+}
+
