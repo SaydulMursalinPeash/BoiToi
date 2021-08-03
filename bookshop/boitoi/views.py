@@ -6,6 +6,8 @@ from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from .decoretors import *
 
+from django.contrib.postgres.search import *
+
 page_url=[]
 def home(request):
     catagory=Catagory.objects.all()
@@ -199,3 +201,26 @@ def EditOrder(request,pk):
         'form':form,
     }
     return render(request,'boitoi/edit_order.html',context)
+
+
+def Search(request):
+    booklist=[]
+    context={}
+    if request.method=='POST':
+        txt=request.POST.get('search_box_text')
+        print(txt)
+        booklist+=Book.objects.filter(name__unaccent__lower__trigram_similar=txt)
+        
+        for i in Author.objects.filter(name__contains=txt):
+            booklist+=i.book_set.all()
+        
+
+
+        booklist=set(booklist)
+        booklist=list(booklist)
+        print(booklist)
+        context={
+            'books':booklist
+        }
+
+    return render(request,'boitoi/search_nald.html',context)
