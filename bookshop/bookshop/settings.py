@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'boitoi.apps.BoitoiConfig',
-    'channels'
+    'channels',
+    'django.contrib.postgres'
 ]
 
 MIDDLEWARE = [

@@ -42,7 +42,7 @@ class BookCommentConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         comment = text_data_json['comment']
         user=str(self.scope['user'])
-        now = timezone.now()
+        now = Review.objects.last().time_created
         photo=self.get_photo(user)
         photo=photo.read()
         self.save_data({

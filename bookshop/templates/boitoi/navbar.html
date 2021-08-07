@@ -350,8 +350,9 @@ hr{
             
             <!-----Search icon----->
             <div class="search_container">
-                <form method="POST">
-                    <input type="text">
+                <form method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <input type="text" id="search_box_text" name="search_box_text" required>
                     <button type="submit"><span class="material-icons">search</span></button> 
                 </form>
             </div>
@@ -364,7 +365,12 @@ hr{
                     <li><a href="{% url 'admin_dashboard' %}"><p>Dashboard</p></a></li>
                     {% endif %}
                     <hr>
+                    {% if request.user.is_superuser %}
+                    <li><a href="{% url 'add_items' %}"><p>Add items</p></a></li>
+                    {% else %}
                     <li><a href="#"><p>About us</p></a></li>
+                    {% endif %}
+                    
 
 
                 </ul>

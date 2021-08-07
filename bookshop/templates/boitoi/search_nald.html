@@ -1,0 +1,295 @@
+{% extends 'boitoi/main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+
+.book_catagory .book_cart{
+   position: relative;
+   height: 220px;
+   width: 152px;
+   overflow: hidden;
+   border-radius: 3px;
+   margin: 4px;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   
+}
+.book_cart .image_cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   top:0;
+   left: 0; 
+
+}
+.book_cart .image_cover img{
+   position: relative;
+   height: 100%;
+   width:100%;
+}
+.book_cart .book_details{
+   position: absolute;
+   bottom: 0;
+   left:0;
+   width: 100%;
+   background-color: rgba(255, 255, 255, 0.857);
+   padding-bottom: 5px;
+   backdrop-filter: blur(5px);
+   border-radius: 0px 0px 3px 3px;
+
+}
+.book_cart .book_details .book_name{
+   padding: 8px;
+}
+.book_cart .book_details .book_name p{
+   font-family: 'Noto Sans', sans-serif;
+   font-weight: 700;
+
+font-size: 15px;
+color: rgb(32, 32, 32);
+
+word-wrap: break-word;
+
+}
+.book_cart .book_details .book_price{
+   padding: 3px 7px;
+   border-radius: 15px;
+   width: fit-content;
+   margin-left: 10px;
+   background-color: rgb(255, 65, 65);
+   
+}
+.book_cart .book_details .book_price p{
+font-family: 'Bitter', serif;
+color: rgb(255, 239, 239);
+font-size: 13px;
+}
+.book_cart .actions{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(251, 251, 251, 0.782);
+   z-index: 5;
+   border-radius: 3px;
+   bottom: -100%;
+   backdrop-filter: blur(2px);
+}
+.book_cart:hover .actions{
+   bottom:0;
+   transition: all 0.2s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   
+}
+.actions .add_to_cart{
+   height: 45px;
+   width: 45px;
+   border-radius: 50%;
+
+}
+.actions .add_to_cart button{
+   position: relative;
+   height: 100%;
+   width: 100%;
+   display: flex;
+   text-decoration: none;
+   align-items: center;
+   border: 2px solid black;
+   outline: none;
+   justify-content: center;
+   border-radius: 50%;
+   background-color: rgb(255, 254, 247);
+}
+.actions .add_to_cart button i{
+   font-size: 25px;
+   color: rgb(47, 47, 47);
+}
+.actions .add_to_cart button:hover{
+   background-color: rgb(7, 7, 7);
+   cursor: pointer;
+}
+.actions .add_to_cart button:hover i{
+   color: rgb(191, 191, 191);
+}
+.actions .show_detail_button{
+   position: absolute;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(0, 0, 0);
+   bottom: -0.5;
+   border: none;
+   outline: none;
+}
+.actions .show_detail_button:hover{
+   background-color: rgba(255, 255, 255, 0.53);
+}
+.actions .show_detail_button:hover a{
+   color: black;
+}
+.actions .show_detail_button a{
+   text-decoration: none;
+   color: rgb(151, 198, 255);
+   font-size:16px;
+   position: relative;
+   height: 30px;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Kanit', sans-serif;
+}
+.book_catagory.active{
+clip-path: inset(0 0 0 0);
+transition: all 0.5px;
+}
+.cat_button.active{
+border-bottom: 2px solid rgb(0, 115, 255);
+
+}
+@media only screen and (max-width:1300px){
+   .home_container{
+       width: 100%;
+   }
+}
+.book_edit_button{
+   position: absolute;
+   height: 25px;
+   width: 25px;
+   border-radius: 50%;
+   background-color: rgb(86, 193, 247);
+   outline: none;
+   top: 5px;
+   border: 1.5px solid black;
+   right: 5px;
+   cursor: pointer;
+   color: black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+}
+.book_edit_button i{
+   font-size: 12px;
+}
+.book_edit_button:hover{
+   background-color: aliceblue;
+}
+.add_book{
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 60px;
+   width: 60px;
+   border-radius: 50%;
+   background-color: rgb(4, 93, 157);
+   cursor: pointer;
+   border: 5px solid rgb(255, 121, 121);
+   text-decoration: none;
+}
+.add_book i{
+   color: rgb(255, 255, 255);
+   font-size: 45px;
+}
+.book_cart{
+   background-color: rgba(255, 255, 255, 0.748);
+   backdrop-filter: blur(5px);
+   box-shadow: 0px 0px 10px gray;
+}
+.add_book:hover{
+   background-color: rgba(0, 2, 2, 0.381);
+}
+
+
+
+.book_delete_button{
+   position: absolute;
+   height: 25px;
+   width: 25px;
+   border-radius: 50%;
+   background-color: rgb(251, 75, 75);
+   outline: none;
+   top: 40px;
+   border: 1.5px solid black;
+   right: 5px;
+   cursor: pointer;
+   color: black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+}
+.book_delete_button i{
+   font-size: 12px;
+}
+.book_delete_button:hover{
+   background-color: aliceblue;
+}
+.result_contents{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+
+    justify-content: center;
+    display: flex;
+
+
+}
+.book_catagory{
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    width: fit-content;
+
+}
+
+</style>
+
+
+<div class="result_contents">
+    <div class="book_catagory">
+        {% for book in books %}
+        <div class="book_cart">
+            <div class="image_cover">
+                <img src="{{book.cover.url }}">
+            </div>
+            <div class="book_details">
+                <div class="book_name"><p>{{ book.name }}</p></div>
+                <div class="book_price"><p>{{ book.price }}TK</p></div>
+            </div>
+            <div class="actions">
+             {% if request.user.is_superuser %}
+             <a class="book_edit_button" href="{% url 'edit_book' book.id %}"><i class="fas fa-edit"></i></a>
+             <a class="book_delete_button" href="{% url 'delete_book' book.id %}"><i class="fas fa-trash-alt"></i></a>
+             {% endif %}
+                <div class="add_to_cart"><button href="{% url 'add_cart' book.id %}" value="{{ book.id }}"><i class="fas fa-cart-plus"></i></button></div>
+                <div class="show_detail_button"><a href="{% url 'about_book' book.id %}">Details</a></div>
+                
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
+<script>
+   in_field=document.getElementById('search_box_text');
+   in_field.value="{{txt}}";
+</script>
+
+
+
+{% endblock %}

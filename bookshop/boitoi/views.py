@@ -8,6 +8,7 @@ from .decoretors import *
 
 from django.contrib.postgres.search import *
 
+
 page_url=[]
 def home(request):
     catagory=Catagory.objects.all()
@@ -17,7 +18,7 @@ def home(request):
     cart=None
     if request.user.is_authenticated:
         cart_count=request.user.customer.cart_set.all().count()
-        cart=request.user.customer.cart_set.all().reverse()
+        cart=request.user.customer.cart_set.order_by("date_created").reverse()
 
     for i in catagory:
         book_list=i.book_set.order_by("date_created").reverse()
@@ -208,10 +209,11 @@ def Search(request):
     context={}
     if request.method=='POST':
         txt=request.POST.get('search_box_text')
-        print(txt)
-        booklist+=Book.objects.filter(name__unaccent__lower__trigram_similar=txt)
+        booklist+=Book.objects.filter(
+            name__unaccent__lower__trigram_similar=txt
+            )
         
-        for i in Author.objects.filter(name__contains=txt):
+        for i in Author.objects.filter(name__unaccent__icontains=txt):
             booklist+=i.book_set.all()
         
 
@@ -220,7 +222,14 @@ def Search(request):
         booklist=list(booklist)
         print(booklist)
         context={
-            'books':booklist
+            'books':booklist,
+            'txt':txt
         }
 
     return render(request,'boitoi/search_nald.html',context)
+
+
+
+
+def AddItems(request):
+    return render(request,'boitoi/add_items.html')

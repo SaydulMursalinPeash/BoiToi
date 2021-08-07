@@ -5,7 +5,12 @@ from django.db.models.fields.related import ForeignKey
 from django.db.models.fields.reverse_related import ManyToManyRel
 from django.template import *
 from django.template.defaultfilters import default
+from django.db.models import CharField
+from django.db.models.functions import Lower
+from django.db.models import CharField
+from django.db.models.functions import Lower
 
+CharField.register_lookup(Lower)
 
 
 class Customer(models.Model):
@@ -53,6 +58,7 @@ class Book(models.Model):
     cover = models.ImageField(default='defaultcover.jpg',null=True,blank=True)
     date_created=models.DateTimeField(auto_now_add=True,blank=True)
 
+    search_fields=["name","description"]
     def __str__(self):
         return self.name
 
@@ -109,6 +115,7 @@ class Order(models.Model):
 class Cart(models.Model):
     customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
     book=models.ForeignKey(Book,null=True,on_delete=models.CASCADE)
+    date_created=models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self):
         return self.customer.name+"("+self.book.name+")"
 
